@@ -34,7 +34,7 @@ class Ui_MainWindow(object):
         self.btnStop.setGeometry(QtCore.QRect(610, 440, 131, 41))
         self.btnStop.setObjectName("btnStop")
         self.labelStatus = QtWidgets.QLabel(self.centralWidget)
-        self.labelStatus.setGeometry(QtCore.QRect(100, 106, 111, 31))
+        self.labelStatus.setGeometry(QtCore.QRect(100, 106, 300, 31))
         self.labelStatus.setObjectName("labelStatus")
         self.checkBox = QtWidgets.QCheckBox(self.centralWidget)
         self.checkBox.setGeometry(QtCore.QRect(100, 330, 87, 20))
