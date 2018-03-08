@@ -24,10 +24,25 @@ class MainWindow(QMainWindow):
         self.ui.btnStart.clicked.connect(self.buttonStartClicked)
         self.ui.btnNetworkTest.clicked.connect(self.buttonNetworkClicked)
         self.ui.btnStop.clicked.connect(self.buttonStopClicked)
+        ip_status = 'IP: '
+        self.ui.labelIPAddress.setText(ip_status + get_ip_address())
 
         self.send_play_count = 0
 
     def buttonStopClicked(self):
+
+        # send out STOP command as a bundle
+        msg1 = oscbuildparse.OSCMessage("/pc1/cmd/control/showison", None, ["0000"])
+        msg2 = oscbuildparse.OSCMessage("/pc2/cmd/control/showison", None, ["0000"])
+        msg3 = oscbuildparse.OSCMessage("/pc3/cmd/control/showison", None, ["0000"])
+        msg4 = oscbuildparse.OSCMessage("/pc4/cmd/control/showison", None, ["0000"])
+
+        bun = oscbuildparse.OSCBundle(
+            oscbuildparse.OSC_IMMEDIATELY,
+            [msg1, msg2, msg3, msg4])
+
+        osc_send(bun, "oscclient")
+        osc_process()
 
         pe = QtGui.QPalette()
         pe.setColor(QtGui.QPalette.WindowText, QtGui.QColor(0, 0, 0, 200))
@@ -91,6 +106,20 @@ def oscInit():
     osc_startup()
     # Make client channels to send packets.
     osc_udp_client(IP, PORT, "oscclient")
+
+
+def get_ip_address():
+    import socket
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    try:
+        # doesn't even have to be reachable
+        s.connect(('10.255.255.255', 1))
+        IP = s.getsockname()[0]
+    except:
+        IP = '127.0.0.1'
+    finally:
+        s.close()
+    return IP
 
 
 if __name__ == '__main__':

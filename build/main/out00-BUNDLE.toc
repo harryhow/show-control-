@@ -1,0 +1,3 @@
+([('main',
+   '/Users/harryhow/PycharmProjects/AGT_ShowControl/dist/main',
+   'EXECUTABLE')],)
