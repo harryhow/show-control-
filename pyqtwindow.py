@@ -70,7 +70,7 @@ class Ui_MainWindow(object):
         self.btnNetworkTest.setText(_translate("MainWindow", "Network Test"))
         self.labelPCName.setText(_translate("MainWindow", "PC: ______________"))
         self.labelIPAddress.setText(_translate("MainWindow", "IP: ___ . ____ . ____. ___"))
-        self.btnStop.setText(_translate("MainWindow", "Stop!"))
+        self.btnStop.setText(_translate("MainWindow", "Ready!"))
         self.labelStatus.setText(_translate("MainWindow", "STATUS: "))
         self.checkBox.setText(_translate("MainWindow", "PC1"))
         self.checkBox_2.setText(_translate("MainWindow", "PC2"))
